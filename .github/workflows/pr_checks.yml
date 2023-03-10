@@ -1,0 +1,52 @@
+name: PR-Checks
+
+on: pull_request
+
+jobs:
+  eslint:
+    name: ESlint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12'
+      - name: Install
+        run: yarn install
+      - name: Run ESlint
+        run: yarn lint
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12'
+      - name: Install
+        run: yarn install
+      - name: Run ESlint
+        run: yarn prettier
+
+  cypress:
+    name: Cypress
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12'
+      - name: Install
+        run: yarn install
+      - name: Run Cypress tests
+        run: yarn ci-test-dev
